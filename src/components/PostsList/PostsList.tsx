@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PostsList.scss';
 import { getAllPosts, getPosts } from '../../api/posts';
-import { Post } from '../../react-app-env';
+import { Post } from '../../types';
 
 type Props = {
   userSelectedId: string;

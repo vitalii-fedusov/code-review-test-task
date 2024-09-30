@@ -1,6 +1,6 @@
 import './NewCommentForm.scss';
 import React, { FormEvent, useState } from 'react';
-import { Comment } from '../../react-app-env';
+import { Comment } from '../../types';
 
 type Props = {
   commentsList: Comment[] | undefined;

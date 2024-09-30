@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import './styles/general.scss';
+import 'bulma/css/bulma.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+import './App.scss';
 import { PostsList } from './components/PostsList';
 import { PostDetails } from './components/PostDetails';
 import { getAllUsers } from './api/api';
-import { User } from './react-app-env';
+import { User } from './types';
 
 const App: React.FC = () => {
   const [allUsers, setAllUsers] = useState<User[]>([]);
