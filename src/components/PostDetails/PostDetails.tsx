@@ -10,8 +10,8 @@ type Props = {
 };
 
 export const PostDetails: React.FC<Props> = ({
-  postId,
-}) => {
+                                               postId,
+                                             }) => {
   const [commentsList, setCommentsList] = useState<Comment[] | undefined>([]);
   const [visiblecomments, setVisiblecomments] = useState(false);
   const [postDetails, setPostDetails] = useState<Post>();

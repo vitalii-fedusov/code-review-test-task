@@ -10,10 +10,10 @@ type Props = {
 };
 
 export const PostsList: React.FC<Props> = ({
-  userSelectedId,
-  selectPost,
-  post,
-}) => {
+                                             userSelectedId,
+                                             selectPost,
+                                             post,
+                                           }) => {
   const [currentPostList, setPostList] = useState<Post[]>([]);
 
   const allPosts = async () => {

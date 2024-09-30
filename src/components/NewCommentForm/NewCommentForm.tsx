@@ -8,8 +8,8 @@ type Props = {
 };
 
 export const NewCommentForm: React.FC<Props> = ({
-  commentsList, setCommentsList,
-}) => {
+                                                  commentsList, setCommentsList,
+                                                }) => {
   const [yourname, setYourname] = useState('');
   const [youremail, setYouremail] = useState('');
   const [yourcomment, setYourcomment] = useState('');
