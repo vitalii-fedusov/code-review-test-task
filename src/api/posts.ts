@@ -1,4 +1,4 @@
-import { Post } from '../react-app-env';
+import { Post } from '../types';
 
 export const BASE_URL = 'https://mate.academy/students-api/';
 

@@ -1,6 +1,6 @@
 import './NewCommentForm.scss';
 import React, { FormEvent, useState } from 'react';
-import { Comment } from '../../react-app-env';
+import { Comment } from '../../types';
 
 type Props = {
   commentsList: Comment[] | undefined;
@@ -8,8 +8,8 @@ type Props = {
 };
 
 export const NewCommentForm: React.FC<Props> = ({
-  commentsList, setCommentsList,
-}) => {
+                                                  commentsList, setCommentsList,
+                                                }) => {
   const [yourname, setYourname] = useState('');
   const [youremail, setYouremail] = useState('');
   const [yourcomment, setYourcomment] = useState('');

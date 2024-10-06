@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NewCommentForm } from '../NewCommentForm';
 import './PostDetails.scss';
-import { Post, Comment } from '../../react-app-env';
+import { Post, Comment } from '../../types';
 import { getComments, delComment } from '../../api/comments';
 import { getPostbyId } from '../../api/posts';
 
@@ -10,8 +10,8 @@ type Props = {
 };
 
 export const PostDetails: React.FC<Props> = ({
-  postId,
-}) => {
+                                               postId,
+                                             }) => {
   const [commentsList, setCommentsList] = useState<Comment[] | undefined>([]);
   const [visiblecomments, setVisiblecomments] = useState(false);
   const [postDetails, setPostDetails] = useState<Post>();
