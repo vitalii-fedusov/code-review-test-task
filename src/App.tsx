@@ -1,60 +1,65 @@
-import classNames from 'classnames';
-
+import React, { useState, useEffect } from 'react';
+import './App.scss';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-
 import { PostsList } from './components/PostsList';
 import { PostDetails } from './components/PostDetails';
-import { UserSelector } from './components/UserSelector';
-import { Loader } from './components/Loader';
+import { getAllUsers } from './api/api';
+import { User } from './types';
 
-export const App = () => (
-  <main className="section">
-    <div className="container">
-      <div className="tile is-ancestor">
-        <div className="tile is-parent">
-          <div className="tile is-child box is-success">
-            <div className="block">
-              <UserSelector />
-            </div>
+const App: React.FC = () => {
+  const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [currentUser, setCurrentUser] = useState('0');
+  const [selectedPostId, setSelectedPostId] = useState<number>();
 
-            <div className="block" data-cy="MainContent">
-              <p data-cy="NoSelectedUser">No user selected</p>
+  useEffect(() => {
+    getAllUsers()
+      .then(response => setAllUsers(response));
+  }, []);
 
-              <Loader />
+  return (
+    <div className="App">
+      <header className="App__header">
+        <label>
+          Select a user: &nbsp;
 
-              <div
-                className="notification is-danger"
-                data-cy="PostsLoadingError"
+          <select
+            className="App__user-selector"
+            value={currentUser}
+            onChange={(event) => {
+              setCurrentUser(event.target.value);
+            }}
+          >
+            <option value="0" disabled>All users</option>
+            {allUsers.map(user => (
+              <option
+                key={user.id}
+                value={`${user.id}`}
               >
-                Something went wrong!
-              </div>
-
-              <div className="notification is-warning" data-cy="NoPostsYet">
-                No posts yet
-              </div>
-
-              <PostsList />
-            </div>
-          </div>
+                {user.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </header>
+      <main className="App__main">
+        <div className="App__sidebar">
+          <PostsList
+            userSelectedId={currentUser}
+            selectPost={setSelectedPostId}
+            post={selectedPostId}
+          />
         </div>
 
-        <div
-          data-cy="Sidebar"
-          className={classNames(
-            'tile',
-            'is-parent',
-            'is-8-desktop',
-            'Sidebar',
-            'Sidebar--open',
-          )}
-        >
-          <div className="tile is-child box is-success ">
-            <PostDetails />
-          </div>
+        <div className="App__content">
+          <PostDetails
+            postId={selectedPostId}
+          />
         </div>
-      </div>
+      </main>
     </div>
-  </main>
-);
+  );
+};
+
+export default App;
